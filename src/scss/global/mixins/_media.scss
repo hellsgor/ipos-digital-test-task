@@ -1,0 +1,49 @@
+@import '../media';
+
+@mixin media($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin min-media($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin laptop-media {
+  @include media($mediaLaptop) {
+    @content;
+  }
+}
+
+@mixin tablet-horizontal-media {
+  @include media($mediaTabletHorizontal) {
+    @content;
+  }
+}
+
+@mixin tablet-vertical-media {
+  @include media($mediaTabletVertical) {
+    @content;
+  }
+}
+
+@mixin mobile-media {
+  @include media($mediaMobile) {
+    @content;
+  }
+}
+
+@mixin xs-media {
+  @include media($mediaXS) {
+    @content;
+  }
+}
+
+@mixin xxs-media {
+  @include media($mediaXXS) {
+    @content;
+  }
+}
