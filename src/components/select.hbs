@@ -1,4 +1,7 @@
 <div class="select">
+  {{#if this.label}}
+    <span class="select__label">{{{this.label}}}</span>
+  {{/if}}
   <button class="select__button" type="button">
     <span class="select__value">Выберите параметр</span>
     <span class="select__arrow">
@@ -7,4 +10,5 @@
       </svg>
     </span>
   </button>
+  {{> dropdown classes='select__dropdown' list=this.list}}
 </div>

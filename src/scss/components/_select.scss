@@ -11,11 +11,13 @@
     justify-content: space-between;
     column-gap: 16px;
     background: $white;
+    cursor: pointer;
   }
   
   &__value {
     line-height: 1.5;
     color: $gray-main;
+    pointer-events: none;
   }
   
   &__arrow {
@@ -24,16 +26,25 @@
     height: 20px;
     align-items: center;
     justify-content: center;
-    transition: transform .3s ease-in-out;
+    pointer-events: none;
     
     svg {
       width: 10px;
       height: 6px;
+      transition: transform .3s ease-in-out;
       fill: $gray-main;
     }
-    
-    &_turn {
+  }
+  
+  &_opened {
+    .select__arrow svg {
       transform: rotate(180deg);
+    }
+  }
+  
+  &_selected {
+    .select__value {
+      color: $txt-black;
     }
   }
 }
