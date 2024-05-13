@@ -1,6 +1,58 @@
 @import 'colors';
+@import '../global/functions';
 
 body {
   background-color: $white;
   color: $txt-black;
+}
+
+.section {
+  &:first-child {
+    padding-top: rem(100);
+  }
+  
+  &:not(:last-child) {
+    margin-bottom: rem(72);
+  }
+  
+  &__container {
+    width: 100%;
+    max-width: rem(1224);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@include laptop-media {
+  .section {
+    &__container {
+      max-width: rem(1040);
+    }
+  }
+}
+
+@include tablet-horizontal-media {
+  .section {
+    &__container {
+      max-width: rem(840);
+    }
+  }
+}
+
+@include tablet-vertical-media {
+  .section {
+    &__container {
+      max-width: rem(600);
+    }
+  }
+}
+
+@include mobile-media {
+  .section {
+    &__container {
+      max-width: 100%;
+      padding-right: 24px;
+      padding-left: 24px;
+    }
+  }
 }

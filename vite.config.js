@@ -20,15 +20,15 @@ export default defineConfig({
       '@components': resolve(__dirname, '/src/components'),
     },
   },
+  plugins: [
+    handlebars({
+      partialDirectory: resolve(__dirname, './src/components'),
+      context(pagePath) {
+        return pageData[pagePath];
+      },
+    }),
+  ],
   css: {
     devSourcemap: true,
-    plugins: [
-      handlebars({
-        partialDirectory: resolve(__dirname, './src/components'),
-        context(pagePath) {
-          return pageData[pagePath];
-        },
-      }),
-    ],
   },
 });
