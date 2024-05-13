@@ -22,3 +22,37 @@ body {
     margin-left: auto;
   }
 }
+
+@include laptop-media {
+  .section {
+    &__container {
+      max-width: rem(1040);
+    }
+  }
+}
+
+@include tablet-horizontal-media {
+  .section {
+    &__container {
+      max-width: rem(840);
+    }
+  }
+}
+
+@include tablet-vertical-media {
+  .section {
+    &__container {
+      max-width: rem(600);
+    }
+  }
+}
+
+@include mobile-media {
+  .section {
+    &__container {
+      max-width: 100%;
+      padding-right: 24px;
+      padding-left: 24px;
+    }
+  }
+}
