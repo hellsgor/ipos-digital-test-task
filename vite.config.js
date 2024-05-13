@@ -8,6 +8,18 @@ const pageData = {
 };
 
 export default defineConfig({
+  base: './',
+  server: {
+    host: '0.0.0.0',
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, '/src'),
+      '@scss': resolve(__dirname, '/src/scss'),
+      '@fonts': resolve(__dirname, '/fonts'),
+      '@components': resolve(__dirname, '/src/components'),
+    },
+  },
   css: {
     devSourcemap: true,
     plugins: [
