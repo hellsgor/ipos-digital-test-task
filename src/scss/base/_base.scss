@@ -1,6 +1,24 @@
 @import 'colors';
+@import '../global/rem';
 
 body {
   background-color: $white;
   color: $txt-black;
+}
+
+.section {
+  &:first-child {
+    padding-top: rem(100);
+  }
+  
+  &:not(:last-child) {
+    margin-bottom: rem(72);
+  }
+  
+  &__container {
+    width: 100%;
+    max-width: rem(1224);
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
