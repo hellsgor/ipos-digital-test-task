@@ -1,0 +1,39 @@
+.select {
+  width: 100%;
+  
+  &__button {
+    display: inline-flex;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid $gray-secondary;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 16px;
+    background: $white;
+  }
+  
+  &__value {
+    line-height: 1.5;
+    color: $gray-main;
+  }
+  
+  &__arrow {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s ease-in-out;
+    
+    svg {
+      width: 10px;
+      height: 6px;
+      fill: $gray-main;
+    }
+    
+    &_turn {
+      transform: rotate(180deg);
+    }
+  }
+}
