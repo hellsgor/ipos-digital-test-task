@@ -14,6 +14,10 @@ class Select {
     dropdown: `${selectClassName}__dropdown`,
   };
 
+  modifiers = {
+    opened: 'opened',
+  };
+
   constructor(select) {
     this.select = select;
 
@@ -29,15 +33,25 @@ class Select {
   }
 
   addEvents() {
-    this.button.addEventListener('click', this.selectButtonClickHandler);
+    this.button.addEventListener(
+      'click',
+      this.selectButtonClickHandler.bind(this),
+    );
   }
 
   selectButtonClickHandler() {
-    console.log('click');
+    const isOpen = this.select.classList.contains(
+      `${selectClassName}_${this.modifiers.opened}`,
+    );
+
+    this.select.classList[isOpen ? 'remove' : 'add'](
+      `${selectClassName}_${this.modifiers.opened}`,
+    );
+    this.dropdownInstance.toggleDropdown(isOpen);
   }
 
   initDropdown() {
-    this.dropdownInstance = new Dropdown(this.dropdown);
+    this.dropdownInstance = new Dropdown({ dropdown: this.dropdown });
   }
 }
 
