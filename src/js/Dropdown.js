@@ -37,11 +37,9 @@ export class Dropdown {
       return this.heightPerFrame;
     }
 
-    this.heightPerFrame =
-      Math.round(
-        (this.list.offsetHeight / (this.transitionMs / this.framesPerSecond)) *
-          100,
-      ) / 100;
+    this.heightPerFrame = Math.ceil(
+      this.list.offsetHeight / (this.transitionMs / this.framesPerSecond),
+    );
 
     return this.heightPerFrame;
   }
@@ -72,7 +70,6 @@ export class Dropdown {
         clearInterval(interval);
         return;
       }
-
       startHeight = getCurrentHeight();
       this.dropdown.style.height = `${startHeight}px`;
 
