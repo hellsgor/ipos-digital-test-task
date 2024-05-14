@@ -1,6 +1,7 @@
 .select {
   position: relative;
   width: 100%;
+  letter-spacing: rem(-0.2);
   
   &__dropdown {
     max-height: 216px;
@@ -9,6 +10,7 @@
   &__label {
     display: block;
     padding-bottom: 8px;
+    letter-spacing: rem(0.2);
     
     &[for] {
       cursor: pointer;
@@ -24,6 +26,7 @@
     align-items: center;
     justify-content: space-between;
     column-gap: 16px;
+    letter-spacing: inherit;
     background: $white;
     cursor: pointer;
     transition: border-color .1s ease-in-out;

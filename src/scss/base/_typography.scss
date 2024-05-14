@@ -23,10 +23,13 @@ h1,
 .heading_1 {
   margin-bottom: rem(32);
   font-size: rem(32);
+  letter-spacing: rem(-1.6);
 }
 
 p,
 .paragraph {
+  letter-spacing: rem(0.15);
+  
   &:not(:last-child) {
     margin-bottom: rem(16);
   }

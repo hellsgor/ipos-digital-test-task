@@ -2,6 +2,7 @@
   position: absolute;
   top: 100%;
   left: 0;
+  z-index: 100;
   overflow-y: hidden;
   width: 100%;
   height: 0;
@@ -12,7 +13,7 @@
     display: flex;
     overflow-y: scroll;
     max-height: 216px;
-    padding: 8px 20px 8px 0;
+    padding: 6px 20px 8px 0;
     border: 1px solid $gray-secondary;
     margin: 0;
     flex-direction: column;

@@ -8,11 +8,15 @@ body {
 
 .section {
   &:first-child {
-    padding-top: rem(100);
+    padding-top: rem(99);
   }
   
   &:not(:last-child) {
-    margin-bottom: rem(72);
+    margin-bottom: rem(70);
+  }
+  
+  &:last-child {
+    margin-bottom: rem(99);
   }
   
   &__container {
