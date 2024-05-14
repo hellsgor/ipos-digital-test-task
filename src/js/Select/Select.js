@@ -1,12 +1,10 @@
 class Select {
   select = null;
-  label = null;
   button = null;
   text = null;
   dropdown = null;
 
   classNames = {
-    label: `${selectClassName}__label`,
     button: `${selectClassName}__button`,
     text: `${selectClassName}__text`,
     dropdown: `${selectClassName}__dropdown`,
@@ -16,12 +14,21 @@ class Select {
     this.select = select;
 
     this.getElements();
+    this.addEvents();
   }
 
   getElements() {
     Object.keys(this.classNames).forEach((key) => {
       this[key] = this.select.querySelector(`.${this.classNames[key]}`);
     });
+  }
+
+  addEvents() {
+    this.button.addEventListener('click', this.selectButtonClickHandler);
+  }
+
+  selectButtonClickHandler() {
+    console.log('click');
   }
 }
 
