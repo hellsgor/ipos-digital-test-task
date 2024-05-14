@@ -1,5 +1,10 @@
 .select {
+  position: relative;
   width: 100%;
+  
+  &__dropdown {
+    max-height: 216px;
+  }
   
   &__label {
     display: block;
@@ -21,6 +26,7 @@
     column-gap: 16px;
     background: $white;
     cursor: pointer;
+    transition: border-color .1s ease-in-out;
     
     &::after {
       width: 20px;
@@ -28,6 +34,7 @@
       background: url('/icons/arrow.svg') center no-repeat;
       background-size: 20px;
       content: '';
+      transition: transform .1s ease-in-out;
     }
   }
   
