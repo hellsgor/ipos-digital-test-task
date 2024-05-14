@@ -12,17 +12,18 @@ export class Dropdown {
   };
 
   parent = null;
-  parentCloseCallback = null;
-  documentClickHandler = this.hideDropdownByDocumentClick.bind(this);
+  callback = null;
+  documentClickHandler = this.hideByDocumentClick.bind(this);
 
   constructor({ dropdown, parent, parentCloseCallback, transitionMs, frames }) {
     this.dropdown = dropdown;
     this.transitionMs = transitionMs || this.transitionMs;
     this.framesPerSecond = frames || this.framesPerSecond;
     this.parent = parent || null;
-    this.parentCloseCallback = parentCloseCallback || null;
+    this.callback = parentCloseCallback || null;
 
     this.getElements();
+    this.addEvent();
     this.getHeightPerFrame();
   }
 
@@ -79,11 +80,22 @@ export class Dropdown {
     }, this.transitionMs / this.framesPerSecond);
   }
 
-  hideDropdownByDocumentClick(event) {
+  hideByDocumentClick(event) {
     if (this.parent && !this.parent.contains(event.target)) {
-      this.parentCloseCallback && this.parentCloseCallback();
+      this.callback && this.callback();
       this.toggleDropdown(true);
     }
+  }
+
+  addEvent() {
+    this.items.forEach((item) => {
+      item.addEventListener('click', this.select.bind(this));
+    });
+  }
+
+  select({ currentTarget }) {
+    this.callback && this.callback(currentTarget);
+    this.toggleDropdown(true);
   }
 }
 

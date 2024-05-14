@@ -50,8 +50,11 @@ class Select {
     this.dropdownInstance.toggleDropdown(isOpen);
   }
 
-  hideDropdownCallback() {
+  hideDropdownCallback(selected) {
     this.select.classList.remove(`${selectClassName}_${this.modifiers.opened}`);
+
+    this.selected = selected || null;
+    console.log(this.selected);
   }
 
   initDropdown() {
