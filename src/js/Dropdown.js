@@ -30,7 +30,9 @@ export class Dropdown {
   }
 
   getElements() {
-    this.items = this.dropdown.querySelectorAll(`.${this.classNames.item}`);
+    this.items = Array.from(
+      this.dropdown.querySelectorAll(`.${this.classNames.item}`),
+    );
     this.list = this.dropdown.querySelector(`.${this.classNames.list}`);
   }
 
@@ -96,6 +98,19 @@ export class Dropdown {
     this.touched = true;
     this.callback && this.callback(currentTarget);
     this.toggleDropdown(true);
+  }
+
+  clearSelected(attr) {
+    if (!this.touched) return;
+
+    const selected = this.items.find((item) => item.hasAttribute(attr));
+    if (selected) {
+      selected.removeAttribute(attr);
+    }
+  }
+
+  setSelected(attr, item) {
+    item.setAttribute(attr, true);
   }
 }
 
