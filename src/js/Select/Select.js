@@ -12,10 +12,17 @@ class Select {
     button: `${selectClassName}__button`,
     text: `${selectClassName}__text`,
     dropdown: `${selectClassName}__dropdown`,
+    itemText: 'dropdown__item-text',
   };
 
   modifiers = {
     opened: 'opened',
+    selected: 'selected',
+  };
+
+  attrs = {
+    selected: 'data-selected',
+    value: 'data-value',
   };
 
   constructor(select) {
@@ -52,9 +59,21 @@ class Select {
 
   hideDropdownCallback(selected) {
     this.select.classList.remove(`${selectClassName}_${this.modifiers.opened}`);
+    selected && this.selectedHandler(selected);
+  }
 
-    this.selected = selected || null;
-    console.log(this.selected);
+  selectedHandler(selected) {
+    this.dropdownInstance.clearSelected(this.attrs.selected);
+    this.dropdownInstance.setSelected(this.attrs.selected, selected);
+
+    this.selected = {
+      element: selected,
+      text: selected.querySelector(`.${this.classNames.itemText}`).textContent,
+      value: selected.getAttribute(this.attrs.value),
+    };
+
+    this.text.innerText = this.selected.text;
+    this.select.classList.add(`${selectClassName}_${this.modifiers.selected}`);
   }
 
   initDropdown() {
