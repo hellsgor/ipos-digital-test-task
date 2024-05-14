@@ -1,6 +1,15 @@
 .select {
   width: 100%;
   
+  &__label {
+    display: block;
+    padding-bottom: 8px;
+    
+    &[for] {
+      cursor: pointer;
+    }
+  }
+  
   &__button {
     display: inline-flex;
     width: 100%;
@@ -12,38 +21,34 @@
     column-gap: 16px;
     background: $white;
     cursor: pointer;
-  }
-  
-  &__value {
-    line-height: 1.5;
-    color: $gray-main;
-    pointer-events: none;
-  }
-  
-  &__arrow {
-    display: flex;
-    width: 20px;
-    height: 20px;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
     
-    svg {
-      width: 10px;
-      height: 6px;
-      transition: transform .3s ease-in-out;
-      fill: $gray-main;
+    &::after {
+      width: 20px;
+      height: 20px;
+      background: url('/icons/arrow.svg') center no-repeat;
+      background-size: 20px;
+      content: '';
     }
   }
   
+  &__text {
+    line-height: 1.5;
+    color: $gray-main;
+  }
+  
   &_opened {
-    .select__arrow svg {
-      transform: rotate(180deg);
+    .select__button {
+      border-color: $gray-main;
+      
+      &::after {
+        transform: rotate(180deg);
+      }
+      
     }
   }
   
   &_selected {
-    .select__value {
+    .select__text {
       color: $txt-black;
     }
   }
