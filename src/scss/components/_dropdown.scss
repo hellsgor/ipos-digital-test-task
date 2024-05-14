@@ -1,10 +1,12 @@
 .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
   overflow-y: hidden;
   width: 100%;
-  height: fit-content;
+  height: 0;
   border-radius: 4px;
   background: $white;
-  transition: height .3s ease-in-out;
   
   &__list {
     display: flex;
@@ -39,9 +41,5 @@
       align-items: center;
       justify-content: center;
     }
-  }
-  
-  &_hidden {
-    height: 0;
   }
 }
