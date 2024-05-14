@@ -1,8 +1,12 @@
+import { Dropdown } from '../Dropdown.js';
+
 class Select {
   select = null;
   button = null;
   text = null;
   dropdown = null;
+
+  dropdownInstance = null;
 
   classNames = {
     button: `${selectClassName}__button`,
@@ -14,6 +18,7 @@ class Select {
     this.select = select;
 
     this.getElements();
+    this.initDropdown();
     this.addEvents();
   }
 
@@ -29,6 +34,10 @@ class Select {
 
   selectButtonClickHandler() {
     console.log('click');
+  }
+
+  initDropdown() {
+    this.dropdownInstance = new Dropdown(this.dropdown);
   }
 }
 
