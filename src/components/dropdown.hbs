@@ -1,0 +1,14 @@
+<div class="{{#if this.classes}}{{this.classes}} {{/if}}dropdown">
+  <ul class="dropdown__list">
+    {{#each this.list}}
+      <li class="dropdown__item" data-value="{{this.value}}">
+        {{#if this.icon}}
+          <span class="dropdown__item-icon">
+            <img src="{{this.icon}}" alt="">
+          </span>
+        {{/if}}
+        <span class="dropdown__item-text">{{{this.text}}}</span>
+      </li>
+    {{/each}}
+  </ul>
+</div>
