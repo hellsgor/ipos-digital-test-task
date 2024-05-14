@@ -15,6 +15,8 @@ export class Dropdown {
   callback = null;
   documentClickHandler = this.hideByDocumentClick.bind(this);
 
+  touched = false;
+
   constructor({ dropdown, parent, parentCloseCallback, transitionMs, frames }) {
     this.dropdown = dropdown;
     this.transitionMs = transitionMs || this.transitionMs;
@@ -91,6 +93,7 @@ export class Dropdown {
   }
 
   select({ currentTarget }) {
+    this.touched = true;
     this.callback && this.callback(currentTarget);
     this.toggleDropdown(true);
   }
