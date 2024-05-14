@@ -11,10 +11,16 @@ export class Dropdown {
     item: `${dropdownClassName}__item`,
   };
 
-  constructor({ dropdown, transitionMs, frames }) {
+  parent = null;
+  parentCloseCallback = null;
+  documentClickHandler = this.hideDropdownByDocumentClick.bind(this);
+
+  constructor({ dropdown, parent, parentCloseCallback, transitionMs, frames }) {
     this.dropdown = dropdown;
     this.transitionMs = transitionMs || this.transitionMs;
     this.framesPerSecond = frames || this.framesPerSecond;
+    this.parent = parent || null;
+    this.parentCloseCallback = parentCloseCallback || null;
 
     this.getElements();
     this.getHeightPerFrame();
@@ -54,6 +60,12 @@ export class Dropdown {
       return currentHeight;
     };
 
+    if (isOpen) {
+      document.removeEventListener('click', this.documentClickHandler);
+    } else {
+      document.addEventListener('click', this.documentClickHandler);
+    }
+
     const interval = setInterval(() => {
       if (counter >= this.transitionMs / this.framesPerSecond) {
         clearInterval(interval);
@@ -65,6 +77,13 @@ export class Dropdown {
 
       ++counter;
     }, this.transitionMs / this.framesPerSecond);
+  }
+
+  hideDropdownByDocumentClick(event) {
+    if (this.parent && !this.parent.contains(event.target)) {
+      this.parentCloseCallback && this.parentCloseCallback();
+      this.toggleDropdown(true);
+    }
   }
 }
 
