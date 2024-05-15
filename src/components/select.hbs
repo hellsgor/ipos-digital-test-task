@@ -1,16 +1,19 @@
-<div class="select">
+<div class="select"
+    {{#if serviceMethod}}data-select-service-method="{{serviceMethod}}"{{/if}}
+>
   {{#if this.label}}
-    <label
-      class="select__label"
+    <label class="select__label"
         {{#if this.id}}for="{{this.id}}"{{/if}}
-    >{{{this.label}}}</label>
+    >
+      {{{this.label}}}
+    </label>
   {{/if}}
-  <button
-    class="select__button"
-    type="button"
+
+  <button class="select__button" type="button"
     {{#if this.id}} id="{{this.id}}"{{/if}}
   >
     <span class="select__text">Выберите параметр</span>
   </button>
+
   {{> dropdown classes='select__dropdown' list=this.list}}
 </div>

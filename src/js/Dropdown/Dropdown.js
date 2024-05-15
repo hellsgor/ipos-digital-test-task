@@ -8,7 +8,6 @@ export class Dropdown {
   heightPerFrame = null;
 
   classNames = {
-    list: `${dropdownClassName}__list`,
     item: `${dropdownClassName}__item`,
     wrapper: `${dropdownClassName}__wrapper`,
   };
@@ -35,7 +34,6 @@ export class Dropdown {
     this.items = Array.from(
       this.dropdown.querySelectorAll(`.${this.classNames.item}`),
     );
-    this.list = this.dropdown.querySelector(`.${this.classNames.list}`);
     this.wrapper = this.dropdown.querySelector(`.${this.classNames.wrapper}`);
   }
 
