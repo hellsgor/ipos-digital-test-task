@@ -86,7 +86,7 @@ class Select {
     this.dropdownInstance = new Dropdown({
       dropdown: this.dropdown,
       parent: this.select,
-      parentCloseCallback: this.hideDropdownCallback.bind(this),
+      dropdownHideCallback: this.hideDropdownCallback.bind(this),
     });
   }
 }
