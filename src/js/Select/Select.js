@@ -1,4 +1,4 @@
-import { Dropdown } from '../Dropdown.js';
+import { Dropdown } from '../Dropdown/Dropdown.js';
 
 class Select {
   select = null;
