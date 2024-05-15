@@ -1,4 +1,5 @@
 import { Dropdown } from '../Dropdown/Dropdown.js';
+import { selectService } from './SelectService.js';
 
 class Select {
   select = null;
@@ -74,6 +75,11 @@ class Select {
 
     this.text.innerText = this.selected.text;
     this.select.classList.add(`${selectClassName}_${this.modifiers.selected}`);
+
+    selectService.methodDefinition({
+      select: this.select,
+      selected: this.selected,
+    });
   }
 
   initDropdown() {
