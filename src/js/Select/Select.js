@@ -2,17 +2,20 @@ import { Dropdown } from '../Dropdown/Dropdown.js';
 import { selectService } from './SelectService.js';
 
 class Select {
-  select = null;
-  button = null;
-  text = null;
-  dropdown = null;
+  $select = null;
+  $button = null;
+  $text = null;
+  $dropdown = null;
 
   dropdownInstance = null;
 
   classNames = {
-    button: `${selectClassName}__button`,
-    text: `${selectClassName}__text`,
-    dropdown: `${selectClassName}__dropdown`,
+    onLoad: {
+      button: `${selectClassName}__button`,
+      text: `${selectClassName}__text`,
+      dropdown: `${selectClassName}__dropdown`,
+    },
+
     itemText: 'dropdown__item-text',
   };
 
@@ -27,7 +30,7 @@ class Select {
   };
 
   constructor(select) {
-    this.select = select;
+    this.$select = select;
 
     this.getElements();
     this.initDropdown();
@@ -35,31 +38,35 @@ class Select {
   }
 
   getElements() {
-    Object.keys(this.classNames).forEach((key) => {
-      this[key] = this.select.querySelector(`.${this.classNames[key]}`);
+    Object.keys(this.classNames.onLoad).forEach((key) => {
+      this[`$${key}`] = this.$select.querySelector(
+        `.${this.classNames.onLoad[key]}`,
+      );
     });
   }
 
   addEvents() {
-    this.button.addEventListener(
+    this.$button.addEventListener(
       'click',
       this.selectButtonClickHandler.bind(this),
     );
   }
 
   selectButtonClickHandler() {
-    const isOpen = this.select.classList.contains(
+    const isOpen = this.$select.classList.contains(
       `${selectClassName}_${this.modifiers.opened}`,
     );
 
-    this.select.classList[isOpen ? 'remove' : 'add'](
+    this.$select.classList[isOpen ? 'remove' : 'add'](
       `${selectClassName}_${this.modifiers.opened}`,
     );
     this.dropdownInstance.toggleDropdown(isOpen);
   }
 
   hideDropdownCallback(selected) {
-    this.select.classList.remove(`${selectClassName}_${this.modifiers.opened}`);
+    this.$select.classList.remove(
+      `${selectClassName}_${this.modifiers.opened}`,
+    );
     selected && this.selectedHandler(selected);
   }
 
@@ -73,19 +80,19 @@ class Select {
       value: selected.getAttribute(this.attrs.value),
     };
 
-    this.text.innerText = this.selected.text;
-    this.select.classList.add(`${selectClassName}_${this.modifiers.selected}`);
+    this.$text.innerText = this.selected.text;
+    this.$select.classList.add(`${selectClassName}_${this.modifiers.selected}`);
 
     selectService.methodDefinition({
-      select: this.select,
+      select: this.$select,
       selected: this.selected,
     });
   }
 
   initDropdown() {
     this.dropdownInstance = new Dropdown({
-      dropdown: this.dropdown,
-      parent: this.select,
+      dropdown: this.$dropdown,
+      parent: this.$select,
       dropdownHideCallback: this.hideDropdownCallback.bind(this),
     });
   }
