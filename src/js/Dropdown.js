@@ -1,6 +1,7 @@
 export class Dropdown {
   dropdown = null;
   items = null;
+  wrapper = null;
 
   transitionMs = 300;
   framesPerSecond = 30;
@@ -9,6 +10,7 @@ export class Dropdown {
   classNames = {
     list: `${dropdownClassName}__list`,
     item: `${dropdownClassName}__item`,
+    wrapper: `${dropdownClassName}__wrapper`,
   };
 
   parent = null;
@@ -34,6 +36,7 @@ export class Dropdown {
       this.dropdown.querySelectorAll(`.${this.classNames.item}`),
     );
     this.list = this.dropdown.querySelector(`.${this.classNames.list}`);
+    this.wrapper = this.dropdown.querySelector(`.${this.classNames.wrapper}`);
   }
 
   getHeightPerFrame() {
@@ -42,7 +45,7 @@ export class Dropdown {
     }
 
     this.heightPerFrame = Math.ceil(
-      this.list.offsetHeight / (this.transitionMs / this.framesPerSecond),
+      this.wrapper.offsetHeight / (this.transitionMs / this.framesPerSecond),
     );
 
     return this.heightPerFrame;
@@ -57,7 +60,8 @@ export class Dropdown {
         ? startHeight - this.getHeightPerFrame()
         : startHeight + this.getHeightPerFrame();
 
-      if (currentHeight > this.list.offsetHeight) return this.list.offsetHeight;
+      if (currentHeight > this.wrapper.offsetHeight)
+        return this.wrapper.offsetHeight;
       if (currentHeight < 0) return 0;
 
       return currentHeight;

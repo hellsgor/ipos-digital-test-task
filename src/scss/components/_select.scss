@@ -3,8 +3,12 @@
   width: 100%;
   letter-spacing: rem(-0.2);
   
-  &__dropdown {
+  .dropdown__wrapper {
     max-height: 216px;
+  }
+  
+  .dropdown__list {
+    max-height: 184px;
   }
   
   &__label {

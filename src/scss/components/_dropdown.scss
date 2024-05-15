@@ -1,31 +1,56 @@
 .dropdown {
   position: absolute;
   top: 100%;
+  right: 0;
   left: 0;
   z-index: 100;
   overflow-y: hidden;
-  width: 100%;
   height: 0;
-  border-radius: 4px;
   background: $white;
+  
+  &::before {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    border: 1px solid $gray-secondary;
+    border-radius: 4px;
+    background-color: $white;
+    content: '';
+    inset: 0;
+  }
+  
+  &__wrapper {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
   
   &__list {
     display: flex;
     overflow-y: scroll;
-    max-height: 216px;
-    padding: 6px 20px 8px 0;
-    border: 1px solid $gray-secondary;
-    margin: 0;
+    padding: 0 12px 0 1px;
+    margin: 0 8px 0 0;
     flex-direction: column;
     list-style: none;
+    //scrollbar-width: thin;
+    //scrollbar-color: $gray-secondary transparent;
+    
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      border-radius: 50px;
+      background-color: $gray-secondary;
+    }
   }
   
   &__item {
+    position: relative;
     display: inline-flex;
     padding: 8px 16px;
     align-items: center;
     column-gap: 8px;
-    background-color: $white;
+    background-color: transparent;
     cursor: pointer;
     transition: background-color .1s ease-in-out;
     
