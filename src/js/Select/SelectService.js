@@ -9,7 +9,7 @@ class SelectService {
         this.valueToHeading(selected.value);
         break;
       case 'alert':
-        this.textToAlert(selected.text);
+        this.textToAlert({ text: selected.text, timeout: 500 });
         break;
       default:
         console.error('Метод для элемента не определён');
@@ -21,8 +21,11 @@ class SelectService {
     console.log(value);
   }
 
-  textToAlert(text) {
-    console.log(text);
+  textToAlert({ text, timeout }) {
+    setTimeout(() => {
+      // eslint-disable-next-line no-alert
+      alert(text);
+    }, timeout);
   }
 }
 
