@@ -1,6 +1,10 @@
 import { Dropdown } from '../Dropdown/Dropdown.js';
 import { selectService } from './SelectService.js';
 
+/**
+ * Представляет собой компонент выбора элемента из списка или селект.
+ * @class
+ */
 class Select {
   $select = null;
   $button = null;
@@ -29,6 +33,11 @@ class Select {
     value: 'data-value',
   };
 
+  /**
+   * Создает экземпляр класса Select.
+   * @constructor
+   * @param {HTMLElement} select - Элемент выбора.
+   */
   constructor(select) {
     this.$select = select;
 
@@ -37,6 +46,9 @@ class Select {
     this.addEvents();
   }
 
+  /**
+   * Получает элементы из DOM.
+   */
   getElements() {
     Object.keys(this.classNames.onLoad).forEach((key) => {
       this[`$${key}`] = this.$select.querySelector(
@@ -45,6 +57,9 @@ class Select {
     });
   }
 
+  /**
+   * Добавляет слушатели событий для кнопки селекта.
+   */
   addEvents() {
     this.$button.addEventListener(
       'click',
@@ -52,6 +67,9 @@ class Select {
     );
   }
 
+  /**
+   * Обрабатывает событие нажатия на кнопку выбора.
+   */
   selectButtonClickHandler() {
     const isOpen = this.$select.classList.contains(
       `${selectClassName}_${this.modifiers.opened}`,
@@ -63,13 +81,21 @@ class Select {
     this.dropdownInstance.toggleDropdown(isOpen);
   }
 
-  hideDropdownCallback(selected) {
+  /**
+   * Функция обратного вызова для скрытия выпадающего списка.
+   * @param {HTMLElement | null} selected - Выбранный элемент списка.
+   */
+  hideDropdownCallback(selected = null) {
     this.$select.classList.remove(
       `${selectClassName}_${this.modifiers.opened}`,
     );
     selected && this.selectedHandler(selected);
   }
 
+  /**
+   * Обрабатывает выбор элемента из выпадающего списка.
+   * @param {HTMLElement} selected - Выбранный элемент списка.
+   */
   selectedHandler(selected) {
     this.dropdownInstance.clearSelected(this.attrs.selected);
     this.dropdownInstance.setSelected(this.attrs.selected, selected);
@@ -89,6 +115,9 @@ class Select {
     });
   }
 
+  /**
+   * Инициализирует компонент выпадающего списка.
+   */
   initDropdown() {
     this.dropdownInstance = new Dropdown({
       dropdown: this.$dropdown,
@@ -100,6 +129,9 @@ class Select {
 
 const selectClassName = 'select';
 
+/**
+ * Инициализирует все селекты на странице.
+ */
 export function initSelects() {
   document.querySelectorAll(`.${selectClassName}`).forEach((select) => {
     new Select(select);
