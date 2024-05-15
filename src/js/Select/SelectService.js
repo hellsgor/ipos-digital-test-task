@@ -1,3 +1,5 @@
+import { createHeadingContent } from '../helpers/create-heading-content.js';
+
 class SelectService {
   attrs = {
     methodName: 'data-select-service-method',
@@ -18,7 +20,8 @@ class SelectService {
   }
 
   valueToHeading(value) {
-    console.log(value);
+    const getBasicHeadingContent = createHeadingContent();
+    document.querySelector('h1').innerText = getBasicHeadingContent(value);
   }
 
   textToAlert({ text, timeout }) {
