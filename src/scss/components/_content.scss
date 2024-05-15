@@ -1,0 +1,17 @@
+.content {
+  &__wrapper {
+    max-width: 57%;
+  }
+  
+  @include tablet-horizontal-media {
+    &__wrapper {
+      max-width: 70%;
+    }
+  }
+  
+  @include tablet-vertical-media {
+    &__wrapper {
+      max-width: unset;
+    }
+  }
+}

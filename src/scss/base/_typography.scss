@@ -1,0 +1,36 @@
+@import '../global/functions';
+
+body {
+  font-family: Roboto, sans-serif;
+  font-size: rem(16);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1,
+.heading_1 {
+  margin-bottom: rem(32);
+  font-size: rem(32);
+  letter-spacing: rem(-1.6);
+}
+
+p,
+.paragraph {
+  letter-spacing: rem(0.15);
+  
+  &:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+}
