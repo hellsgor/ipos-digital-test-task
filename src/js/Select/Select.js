@@ -111,7 +111,10 @@ class Select {
 
     selectService.methodDefinition({
       select: this.$select,
-      selected: this.selected,
+      selected: {
+        text: this.selected.text,
+        value: this.selected.value,
+      },
     });
   }
 
