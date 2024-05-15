@@ -1,3 +1,7 @@
+/**
+ * Представляет собой компонент выпадающего списка.
+ * @class
+ */
 export class Dropdown {
   $dropdown = null;
   items = null;
@@ -18,14 +22,26 @@ export class Dropdown {
 
   touched = false;
 
-  constructor({ dropdown, parent, parentCloseCallback, transitionMs, frames }) {
-    this.dropdown = dropdown;
+  /**
+   * Создает экземпляр класса Dropdown.
+   * @constructor
+   * @param {Object} options - Параметры для выпадающего списка.
+   * @param {HTMLElement} options.dropdown - Элемент выпадающего списка.
+   * @param {HTMLElement} [options.parent=null] - Родительский элемент.
+   * @param {Function} [options.dropdownHideCallback=null] - Функция обратного вызова при скрытии выпадающего списка.
+   * @param {number} [options.transitionMs=300] - Продолжительность перехода в миллисекундах.
+   * @param {number} [options.frames=30] - Количество кадров в секунду для анимации перехода.
+   */
+  constructor({
+    dropdown,
+    parent,
     dropdownHideCallback,
+    transitionMs,
+    frames,
+  }) {
     this.$dropdown = dropdown;
     this.transitionMs = transitionMs || this.transitionMs;
     this.framesPerSecond = frames || this.framesPerSecond;
-    this.parent = parent || null;
-    this.callback = parentCloseCallback || null;
     this.$parent = parent || null;
     this.hideCallback = dropdownHideCallback || null;
 
@@ -34,6 +50,9 @@ export class Dropdown {
     this.getHeightPerFrame();
   }
 
+  /**
+   * Получает элементы из DOM.
+   */
   getElements() {
     this.items = Array.from(
       this.$dropdown.querySelectorAll(`.${this.classNames.item}`),
@@ -41,6 +60,10 @@ export class Dropdown {
     this.$wrapper = this.$dropdown.querySelector(`.${this.classNames.wrapper}`);
   }
 
+  /**
+   * Рассчитывает высоту на каждый кадр для анимации выпадающего списка.
+   * @returns {number} Высота на каждый кадр.
+   */
   getHeightPerFrame() {
     if (this.heightPerFrame) {
       return this.heightPerFrame;
@@ -53,6 +76,10 @@ export class Dropdown {
     return this.heightPerFrame;
   }
 
+  /**
+   * Переключает видимость выпадающего списка.
+   * @param {boolean} isOpen - Указывает, следует ли открыть или закрыть выпадающий список.
+   */
   toggleDropdown(isOpen) {
     let counter = 0;
     let startHeight = isOpen ? this.$dropdown.offsetHeight : 0;
@@ -87,6 +114,10 @@ export class Dropdown {
     }, this.transitionMs / this.framesPerSecond);
   }
 
+  /**
+   * Скрывает выпадающий список при клике вне родителя.
+   * @param {Event} event - Событие клика.
+   */
   hideByDocumentClick(event) {
     if (this.$parent && !this.$parent.contains(event.target)) {
       this.hideCallback && this.hideCallback();
@@ -103,12 +134,20 @@ export class Dropdown {
     });
   }
 
+  /**
+   * Обрабатывает выбор элемента выпадающего списка.
+   * @param {Event} event - Событие клика.
+   */
   select({ currentTarget }) {
     this.touched = true;
     this.hideCallback && this.hideCallback(currentTarget);
     this.toggleDropdown(true);
   }
 
+  /**
+   * Удаляет выбранный атрибут из элементов выпадающего списка.
+   * @param {string} attr - Атрибут для очистки.
+   */
   clearSelected(attr) {
     if (!this.touched) return;
 
@@ -118,6 +157,11 @@ export class Dropdown {
     }
   }
 
+  /**
+   * Устанавливает выбранный атрибут на элементе выпадающего списка.
+   * @param {string} attr - Атрибут для установки.
+   * @param {HTMLElement} item - Элемент выпадающего списка, на котором следует установить атрибут.
+   */
   setSelected(attr, item) {
     item.setAttribute(attr, 'true');
   }
